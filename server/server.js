@@ -10,6 +10,7 @@ app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
 app.use('/api/movies', movieRouter);
+app.use('/api/movies/:id', movieRouter);
 app.use('/api/genres', genreRouter)
 
 /** ---------- START SERVER ---------- **/
