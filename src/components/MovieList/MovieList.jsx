@@ -12,9 +12,12 @@ function MovieList() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
+    console.log('movies returned from saga', movies)
   }, []);
 
-  const showMovieDetails = (movie) => {
+  const storeMovieDetails = (movie) => {
+    dispatch({ type: 'SET_MOVIE', 
+    payload: movie})
     console.log('trigger MovieDetails', movie)
     history.push('/details')
   }
@@ -24,8 +27,9 @@ function MovieList() {
       <h1>MovieList</h1>
       <section className="movies">
         {movies.map(movie =>  {
+          // console.log('single movie from map', movie)
           return (
-            <div data-testid='movieItem' key={movie.id} onClick={showMovieDetails}>
+            <div data-testid='movieItem' key={movie.id} onClick={() => storeMovieDetails(movie)}>
               <h3>{movie.title}</h3>
               <img src={movie.poster} alt={movie.title}/>
             </div>
