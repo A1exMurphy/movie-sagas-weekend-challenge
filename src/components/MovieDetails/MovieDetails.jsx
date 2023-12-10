@@ -6,36 +6,41 @@ function MovieDetails() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movie = useSelector(store => store.movie)
-    console.log('movie', movie)
+    // console.log('movie', movie)
 
-    // const showSingleMovie = (movie) => {
 
-    // }
     const returnToMovieList = () => {
-        dispatch({ type: 'FETCH_MOVIE' });
+        dispatch({ type: 'FETCH_MOVIES' });
     
         history.push('/')
     }
 
+//add a conditional to the movie State in order to prevent the render from occuring
+//before the saga request could update the State
     return(
-        <>
-            <div>
-                <button onClick={returnToMovieList}></button>
-                <div 
-                    data-testid='movieItem' 
-                    key={movie.id}>   
-                    <p>Movie goes here</p>
-                    <div>
-                        <h3>{movie.title}</h3> 
-                        <img src={movie.poster} alt={movie.title}/>
-                        <br></br>
-                        <p>{movie.description}</p>
-                    </div>
+        movie.length > 0 && (
+            <div data-testid="movieDetails">
+                <button data-testid="toList" onClick={returnToMovieList}>back to movie list</button>
+
+
+                 <div data-testid="movieDetail"  key={movie[0].id}>
+                            <h3>
+                                {movie[0].title}
+                            </h3>
+                            <img src={movie[0].poster} alt={movie[0].title} />
+
+                            <p>{movie[0].description}</p>
+                        </div>
+                
+                {movie.map(genre => {
+                    return(
+                       <>{genre.name}</>
+                    )
+                })}
                 </div>
-            </div>
-        </>
-    )
-}
+        )
+    )}
+
 
 
 export default MovieDetails;
