@@ -6,7 +6,7 @@ function MovieDetails() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movie = useSelector(store => store.movie)
-    console.log('movie', movie)
+    // console.log('movie', movie)
 
 
     const returnToMovieList = () => {
@@ -15,10 +15,12 @@ function MovieDetails() {
         history.push('/')
     }
 
+//add a conditional to the movie State in order to prevent the render from occuring
+//before the saga request could update the State
     return(
-        <>
+        movie.length > 0 && (
             <div data-testid="movieDetails">
-                <button data-testid="toList" onClick={returnToMovieList}></button>
+                <button data-testid="toList" onClick={returnToMovieList}>back to movie list</button>
 
 
                  <div data-testid="movieDetail"  key={movie[0].id}>
@@ -36,7 +38,7 @@ function MovieDetails() {
                     )
                 })}
                 </div>
-    </>
+        )
     )}
 
 

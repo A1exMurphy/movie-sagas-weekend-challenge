@@ -4,7 +4,7 @@ const pool = require('../modules/pool')
 
 router.get('/:id', (req, res) => {
   console.log('GET started')
-  console.log('req.params', req.params)
+  // console.log('req.params', req.params)
   const query = 
     `
     SELECT 
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
     sqlValue = (req.params);
   pool.query(query)
     .then(results => {
-      console.log('results.row', results.rows)
+      // console.log('results.row', results.rows)
       res.send(results.rows);
     })
     .catch(err => {

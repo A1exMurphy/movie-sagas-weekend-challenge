@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
   const insertMovieQuery = `
     INSERT INTO "movies" 
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
   pool.query(insertMovieQuery, insertMovieValues)
     .then(result => {
       // ID IS HERE!
-      console.log('New Movie Id:', result.rows[0].id);
+      // console.log('New Movie Id:', result.rows[0].id);
       const createdMovieId = result.rows[0].id
 
       // Now handle the genre reference:

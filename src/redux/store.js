@@ -27,7 +27,7 @@ function* fetchAllMovies() {
 function* fetchOneMovie(action) {
   try {
     
-    console.log('movie from onClick', action.payload)
+    // console.log('movie from onClick', action.payload)
     // Get one movie:
     console.log('run the GET')
     const movieResponse = yield axios.get(`/api/genres/${action.payload.id}`);
@@ -60,6 +60,7 @@ const movie = (state = [], action) => {
     case 'SET_MOVIE':
       return action.payload;
     default:
+      // console.log(state,"movie")
       return state;
   }
 }
@@ -70,6 +71,7 @@ const clickMovie = (state = [], action) => {
     case 'FETCH_MOVIE':
       return action.payload;
     default:
+      // console.log(state,"clickMovie")
       return state;
   }
 }
