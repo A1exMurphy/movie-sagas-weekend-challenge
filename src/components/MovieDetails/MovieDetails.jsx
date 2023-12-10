@@ -19,19 +19,20 @@ function MovieDetails() {
         <>
             <div data-testid="movieDetails">
                 <button data-testid="toList" onClick={returnToMovieList}></button>
-                {movie.map(movieCondensed => {
 
-                    return(
-                        <div data-testid="movieDetail"  key={movieCondensed.id}>
+
+                 <div data-testid="movieDetail"  key={movie[0].id}>
                             <h3>
-                                {movieCondensed.title}
+                                {movie[0].title}
                             </h3>
+                            <img src={movie[0].poster} alt={movie[0].title} />
 
-                            {movieCondensed.name}
-                            <img src={movieCondensed.poster} alt={movieCondensed.title} />
-
-                            <p>{movieCondensed.description}</p>
+                            <p>{movie[0].description}</p>
                         </div>
+                
+                {movie.map(genre => {
+                    return(
+                       <>{genre.name}</>
                     )
                 })}
                 </div>
