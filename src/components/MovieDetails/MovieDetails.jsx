@@ -8,34 +8,36 @@ function MovieDetails() {
     const movie = useSelector(store => store.movie)
     console.log('movie', movie)
 
-    // const showSingleMovie = (movie) => {
 
-    // }
     const returnToMovieList = () => {
-        dispatch({ type: 'FETCH_MOVIE' });
+        dispatch({ type: 'FETCH_MOVIES' });
     
         history.push('/')
     }
 
     return(
         <>
-            <div>
-                <button onClick={returnToMovieList}></button>
-                <div 
-                    data-testid='movieItem' 
-                    key={movie.id}>   
-                    <p>Movie goes here</p>
-                    <div>
-                        <h3>{movie.title}</h3> 
-                        <img src={movie.poster} alt={movie.title}/>
-                        <br></br>
-                        <p>{movie.description}</p>
-                    </div>
+            <div data-testid="movieDetails">
+                <button data-testid="toList" onClick={returnToMovieList}></button>
+                {movie.map(movieCondensed => {
+
+                    return(
+                        <div data-testid="movieDetail"  key={movieCondensed.id}>
+                            <h3>
+                                {movieCondensed.title}
+                            </h3>
+
+                            {movieCondensed.name}
+                            <img src={movieCondensed.poster} alt={movieCondensed.title} />
+
+                            <p>{movieCondensed.description}</p>
+                        </div>
+                    )
+                })}
                 </div>
-            </div>
-        </>
-    )
-}
+    </>
+    )}
+
 
 
 export default MovieDetails;

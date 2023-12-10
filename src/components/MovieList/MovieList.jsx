@@ -16,7 +16,7 @@ function MovieList() {
   }, []);
 
   const storeMovieDetails = (movie) => {
-    dispatch({ type: 'SET_MOVIE', 
+    dispatch({ type: 'FETCH_MOVIE', 
     payload: movie})
     console.log('trigger MovieDetails', movie)
     history.push('/details')
@@ -31,7 +31,7 @@ function MovieList() {
           return (
             <div data-testid='movieItem' key={movie.id} onClick={() => storeMovieDetails(movie)}>
               <h3>{movie.title}</h3>
-              <img src={movie.poster} alt={movie.title}/>
+              <img data-testid="toDetails" src={movie.poster} alt={movie.title}/>
             </div>
           );
         })}

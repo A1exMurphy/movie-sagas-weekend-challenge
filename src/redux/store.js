@@ -27,10 +27,10 @@ function* fetchAllMovies() {
 function* fetchOneMovie(action) {
   try {
     
-    // console.log('movie from onClick', action.payload)
+    console.log('movie from onClick', action.payload)
     // Get one movie:
     console.log('run the GET')
-    const movieResponse = yield axios.get(`/api/movies/${action.payload.id}`);
+    const movieResponse = yield axios.get(`/api/genres/${action.payload.id}`);
     // Set the value of the movies reducer:
     yield put({
       type: 'SET_MOVIE',
