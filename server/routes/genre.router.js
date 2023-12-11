@@ -5,6 +5,8 @@ const pool = require('../modules/pool')
 router.get('/:id', (req, res) => {
   console.log('GET started')
   // console.log('req.params', req.params)
+  const movieID = req.params.id;
+
   const query = 
     `
     SELECT 
@@ -18,10 +20,12 @@ router.get('/:id', (req, res) => {
       ON "movies_genres"."genre_id"="genres"."id"
         INNER JOIN "movies"
       ON "movies_genres"."movie_id"="movies"."id"
-        WHERE "movies"."id"='${req.params.id}';
-    `
-    sqlValue = (req.params);
-  pool.query(query)
+        WHERE "movies"."id"=$1;
+    `;
+
+    const sqlValues = [movieID];
+
+  pool.query(query, sqlValues)
     .then(results => {
       // console.log('results.row', results.rows)
       res.send(results.rows);

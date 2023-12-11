@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_MOVIE', fetchOneMovie);
+  // yield takeEvery('SUBMIT_MOVIE', submitNewMovie)
 }
 
 function* fetchAllMovies() {
@@ -40,6 +41,9 @@ function* fetchOneMovie(action) {
     console.log('fetchOneMovie error:', error);
   }
 }
+
+//create generator to POST a new movie submission
+// function* 
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

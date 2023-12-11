@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function MovieList() {
@@ -29,6 +29,11 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
+      <Link to="/add">
+        <button>
+          Add 
+        </button>
+        </Link>
       <section className="movies">
         {movies.map(movie =>  {
           // console.log('single movie from map', movie)
