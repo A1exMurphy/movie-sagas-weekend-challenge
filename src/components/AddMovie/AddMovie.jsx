@@ -27,16 +27,23 @@ function AddMovie() {
                     Add Movie
                 </h2>
                     <input
+                        onSubmit={returnToMovieList}
                         placeholder="Title">
                     </input>
+
                     <input
                         placeholder="Image URL">
                     </input>
+
                     <br></br>
+
                     <textarea
                         placeholder="Description"
                         type="text">
                     </textarea>
+
+                    <br></br>
+
                     <select name="genre" onSelect={setGenre}>
                         <option value="Adventure">Adventure</option>
                         <option value="Animated">Animated</option>
@@ -51,8 +58,11 @@ function AddMovie() {
                         <option value="Science Fiction">Science Fiction</option>
                         <option value="Space-Opera">Space-Opera</option>
                         <option value="Superhero">Superhero</option>
-                    
                     </select>
+
+                    <button onClick={returnToMovieList}>
+                        Submit
+                    </button>
                 </div>
         )
     }
