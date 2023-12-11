@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -6,8 +7,8 @@ function AddMovie() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    // const genre = (state = "", action)
-
+    const [selectGenre, setSelectGenre] = useState("");
+    console.log(selectGenre, "current genre selection")
     const setGenre = () => {
 
     }
@@ -26,6 +27,7 @@ function AddMovie() {
                 <h2>
                     Add Movie
                 </h2>
+                <form>
                     <input
                         onSubmit={returnToMovieList}
                         placeholder="Title">
@@ -44,7 +46,7 @@ function AddMovie() {
 
                     <br></br>
 
-                    <select name="genre" onSelect={setGenre}>
+                    <select name="genre" onChange={(event) => setSelectGenre(event.target.value)}>
                         <option value="Adventure">Adventure</option>
                         <option value="Animated">Animated</option>
                         <option value="Biographical">Biographical</option>
@@ -62,7 +64,7 @@ function AddMovie() {
 
                     <button onClick={returnToMovieList}>
                         Submit
-                    </button>
+                    </button></form>
                 </div>
         )
     }
