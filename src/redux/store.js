@@ -8,6 +8,7 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_MOVIE', fetchOneMovie);
+  // yield takeEvery('SUBMIT_MOVIE', submitNewMovie)
 }
 
 function* fetchAllMovies() {
@@ -40,6 +41,9 @@ function* fetchOneMovie(action) {
     console.log('fetchOneMovie error:', error);
   }
 }
+
+//create generator to POST a new movie submission
+// function* 
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

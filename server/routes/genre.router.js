@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
       ON "movies_genres"."genre_id"="genres"."id"
         INNER JOIN "movies"
       ON "movies_genres"."movie_id"="movies"."id"
-        WHERE "movies"."id"='$1';
+        WHERE "movies"."id"=$1;
     `;
 
     const sqlValues = [movieID];

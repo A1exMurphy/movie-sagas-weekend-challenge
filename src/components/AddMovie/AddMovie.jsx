@@ -8,38 +8,48 @@ function AddMovie() {
     const dispatch = useDispatch();
 
     const [selectGenre, setSelectGenre] = useState("");
-    console.log(selectGenre, "current genre selection")
-    const setGenre = () => {
+    // console.log(selectGenre, "current genre selection")
 
-    }
-
-
+//after new movie details are submitted I want to return to the list of all movies
+//with the updated list
     const returnToMovieList = () => {
+        let newMovie = {
+            title: document.getElementById("title").value,
+            poster: document.getElementById("url").value,
+            description: document.getElementById("description").value,
+            name: selectGenre
+        }
+        console.log('newMovie', newMovie)
 
+        // dispatch({ type: 'SUBMIT_MOVIE', 
+        // payload: newMovie});
     
         history.push('/')
     }
 
-//add a conditional to the movie State in order to prevent the render from occuring
-//before the saga request could update the State
+
     return(
             <div>
                 <h2>
                     Add Movie
                 </h2>
-                <form>
+                <form onSubmit={returnToMovieList}>
                     <input
-                        onSubmit={returnToMovieList}
+                        id="title"
+                        // value=""
                         placeholder="Title">
                     </input>
 
                     <input
+                        id="url"
+                        // value=""
                         placeholder="Image URL">
                     </input>
 
                     <br></br>
 
                     <textarea
+                        id="description"
                         placeholder="Description"
                         type="text">
                     </textarea>
@@ -62,7 +72,8 @@ function AddMovie() {
                         <option value="Superhero">Superhero</option>
                     </select>
 
-                    <button onClick={returnToMovieList}>
+                    <button 
+                        onClick={returnToMovieList}>
                         Submit
                     </button></form>
                 </div>
